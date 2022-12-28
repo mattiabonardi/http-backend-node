@@ -1,2 +1,11 @@
-# http-backend-node
-Generic http backend template with Node.js
+## Installation
+
+```bash
+npm install
+```
+
+## Running
+
+```bash
+npm run start
+```

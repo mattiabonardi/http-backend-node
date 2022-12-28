@@ -1,0 +1,39 @@
+{
+  "name": "http-backend-node",
+  "version": "1.0.0",
+  "description": "Generic http backed written in Node.js",
+  "main": "dist/index.js",
+  "module": "esnext",
+  "type": "module",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.15",
+    "@types/jest": "^29.2.4",
+    "@types/jsonwebtoken": "^9.0.0",
+    "@types/node": "^18.11.18",
+    "@types/uuid": "^9.0.0",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.9.4"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "start": "node dist/index.js",
+    "build": "npm run clean && tsc && cp -r public dist",
+    "test": "jest"
+  },
+  "author": "Mattia Bonardi",
+  "license": "MIT",
+  "jest": {
+    "preset": "ts-jest/presets/default-esm",
+    "moduleNameMapper": {
+      "^(\\.{1,2}/.*)\\.js$": "$1"
+    }
+  }
+}
