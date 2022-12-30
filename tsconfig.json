@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
-    "target": "es2017",
+    "target": "ESNext",
     "outDir": "./dist",
     "baseUrl": "./src",
     "alwaysStrict": true,

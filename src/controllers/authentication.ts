@@ -27,7 +27,7 @@ class AuthenticationController implements Controller {
       this.logout
     );
     this.router.post(
-      `${this.path}/refreshToken`,
+      `${this.path}/refresh_token`,
       validationMiddleware(RefreshTokenDto),
       this.refreshToken
     );
@@ -45,8 +45,8 @@ class AuthenticationController implements Controller {
     };
     try {
       const loginResponseDto: LoginResponseDto = {
-        accessToken: createAccessToken(tokenData),
-        refreshToken: createRefreshToken(tokenData),
+        accessToken: "Bearer " + createAccessToken(tokenData),
+        refreshToken: "Bearer " + createRefreshToken(tokenData),
         message: "Login successfully",
       };
       response.statusCode = 200;
@@ -62,10 +62,10 @@ class AuthenticationController implements Controller {
     next: NextFunction
   ) => {
     response.statusCode = 200;
-      response.json({
-        message: "Logout successfull"
-      });
-  }
+    response.json({
+      message: "Logout successfull",
+    });
+  };
 
   private refreshToken = async (
     request: Request,
@@ -73,11 +73,12 @@ class AuthenticationController implements Controller {
     next: NextFunction
   ) => {
     const payload: RefreshTokenDto = request.body;
+    payload.refreshToken = payload.refreshToken.replace("Bearer ", "");
     try {
       const tokenData: TokenData = verifyRefreshToken(payload.refreshToken);
       const loginResponseDto: LoginResponseDto = {
-        accessToken: createAccessToken(tokenData),
-        refreshToken: payload.refreshToken,
+        accessToken: "Bearer " + createAccessToken(tokenData),
+        refreshToken: "Bearer " + payload.refreshToken,
         message: "Token refreshed successfully",
       };
       response.statusCode = 200;

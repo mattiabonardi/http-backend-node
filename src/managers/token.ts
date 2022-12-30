@@ -82,6 +82,6 @@ const verifyToken = (
       throw new WrongAuthenticationTokenException();
     }
   } catch (error) {
-    throw new WrongAuthenticationTokenException();
+    throw error;
   }
 };

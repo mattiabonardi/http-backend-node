@@ -1,5 +1,4 @@
-import { Request, Response } from "express";
-import { ApplicationException } from "../exceptions/application.js";
+import { NextFunction, Request, Response } from "express";
 
 /**
  * Handle all application error
@@ -8,12 +7,14 @@ import { ApplicationException } from "../exceptions/application.js";
  * @param response
  */
 export function errorMiddleware(
-  error: ApplicationException,
+  error: any,
   _request: Request,
-  response: Response
+  response: Response,
+  _next: NextFunction
 ) {
   const status = error.status || 500;
   const message = error.message || "Something went wrong";
+  console.error(message);
   response.statusCode = status;
   response.json({
     message: message,

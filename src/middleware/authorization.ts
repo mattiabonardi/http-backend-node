@@ -7,13 +7,15 @@ export async function authorizationMiddleware(
   response: Response,
   next: NextFunction
 ) {
-  const token = request.headers.authorization;
+  let token = request.headers.authorization;
+  token = token.replace("Bearer ", "");
   if (token) {
     try {
       const tokenData = verifyAccessToken(token);
       response.locals = {
         tokenData: tokenData,
       };
+      next();
     } catch (error) {
       next(error);
     }
