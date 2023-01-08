@@ -1,4 +1,7 @@
 # Http Backend Node.JS
+
+![logo](logo.png)
+
 **Http backend Node.JS** is a generic backend template based on [Express.JS](https://github.com/expressjs/express). The application has already offers:
 
 - Monitoring API (livez, readyz, metrics)
